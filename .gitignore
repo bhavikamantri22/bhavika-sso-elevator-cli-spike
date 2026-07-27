@@ -1,0 +1,12 @@
+# Terraform (spike)
+infra/spike/.terraform/
+infra/spike/.terraform.lock.hcl
+infra/spike/*.tfstate
+infra/spike/*.tfstate.*
+infra/spike/crash.log
+infra/spike/build/
+
+# Go
+*.exe
+*.test
+/bin/

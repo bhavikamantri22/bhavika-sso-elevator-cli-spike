@@ -8,4 +8,4 @@ Deployment target: AWS account `sso-tooling` (931932531937) — confirmed by the
 
 Language: Go. Reference implementation for SigV4 signing: https://github.com/sirob-tech/boris-mcp-cli (see its signing logic,not the MCP-specific parts).
 
-Current goal: write a small Go program that signs an HTTP request usinglocal AWS credentials, and prints the signed request so its contents can be inspected.
+Current goal: stand up a throwaway API Gateway HTTP API + Lambda in sso-tooling (infra/spike/) with AWS_IAM auth, then send a SigV4-signed request from the Go spike and inspect the Lambda event for signer identity (especially whether SSO sessions expose an email in the ARN).
