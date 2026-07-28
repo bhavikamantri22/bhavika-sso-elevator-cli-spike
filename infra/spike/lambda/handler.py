@@ -25,11 +25,15 @@ def handler(event, context):
     identity = extract_identity(user_arn) if user_arn else None
     if identity:
         print(f"Identified user: {identity}")
-    else:
-        print("Rejected: no email found in signing identity")
+        return {
+            "statusCode": 200,
+            "headers": {"content-type": "application/json"},
+            "body": json.dumps({"ok": True, "message": "logged event to CloudWatch"}),
+        }
 
+    print("Rejected: no email found in signing identity")
     return {
-        "statusCode": 200,
+        "statusCode": 403,
         "headers": {"content-type": "application/json"},
-        "body": json.dumps({"ok": True, "message": "logged event to CloudWatch"}),
+        "body": '{"message": "The credentials provided are not associated with an SSO session. Please sign in using your AWS SSO session and try again."}',
     }
